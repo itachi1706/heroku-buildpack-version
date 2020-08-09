@@ -13,10 +13,12 @@ output_path=$output_dir/source_version.sh
 
 echo_header "Creating profile.d script"
 echo_indented "SOURCE_VERSION: $SOURCE_VERSION"
+SS=$(echo $SOURCE_VERSION | cut -c1-6)
 
 mkdir -p $1/$output_dir
 cat << EOF > $1/$output_path
 export SOURCE_VERSION=\${SOURCE_VERSION:-$SOURCE_VERSION}
+export SOURCE_VERSION_SHORT=${SS}
 EOF
 
 echo_indented "Script installed to $output_path"
